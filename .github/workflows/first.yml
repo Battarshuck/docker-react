@@ -4,8 +4,10 @@ jobs:
   run-react-test:
     runs-on: ubuntu-latest
     steps:
-      -uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      -run: docker build -t battarshuk/test-image -f Dockerfile.dev .
+      - name: build image
+      - run: docker build -t battarshuk/test-image -f Dockerfile.dev .
 
-      -run: docker run battarshuk/test-image npm run test -- --coverage
+      - name: test
+      - run: docker run battarshuk/test-image npm run test -- --coverage

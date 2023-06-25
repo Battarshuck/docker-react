@@ -6,7 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      
-      - run: docker build -t battarshuk/test-image -f Dockerfile.dev .
+      - name: build image
+        run: docker build -t battarshuk/test-image -f Dockerfile.dev .
 
-      - run: docker run battarshuk/test-image npm run test -- --coverage
+      - name: run tests
+        run: docker run -e CI=true battarshuk/test-image npm run test -- --coverage

@@ -1,0 +1,13 @@
+name: first
+on: [push]
+jobs:
+  run-react-test:
+    runs-on: ubuntu-latest
+    steps:
+      -uses: actions/checkout@v3
+
+      -name: build image
+        run: docker build -t battarshuk/test-image -f Dockerfile.dev .
+
+      -name: test
+        run: docker run battarshuk/test-image npm run test -- --coverage
